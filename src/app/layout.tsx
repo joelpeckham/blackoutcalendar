@@ -1,8 +1,9 @@
 import "~/styles/globals.css";
 
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,12 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        {children}
-        <SpeedInsights />
-        <Analytics />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`font-sans ${inter.variable}`}>
+          {children}
+          <SpeedInsights />
+          <Analytics />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
