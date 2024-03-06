@@ -1,30 +1,20 @@
-import { UserButton, SignInButton, SignOutButton, auth } from "@clerk/nextjs";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Separator } from "~/components/ui/separator";
-import { Button } from "~/components/ui/button";
+import { SignInCard } from "~/components/signInCard";
 
 export default function HomePage() {
-  const { userId } = auth();
   return (
     <main className="m-0 h-full w-full p-3">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Welcome to Blackout Calendar
       </h1>
-      <p className="scroll-m-20 text-lg font-medium text-gray-700 py-2">
+      <p className="scroll-m-20 py-2 text-lg font-medium text-gray-700">
         Plan your event when everybody can make it.
       </p>
+      <Separator />
 
-      <Separator/>
+      <SignInCard />
       
-      {userId ? (
-        <Button variant="destructive">
-          <SignOutButton> Sign Out </SignOutButton>
-        </Button>
-      ) : (
-        <Button>
-          <SignInButton> Sign In </SignInButton>
-        </Button>
-      )}
-      <UserButton />
     </main>
   );
 }
